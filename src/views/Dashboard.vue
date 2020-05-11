@@ -1,6 +1,6 @@
 <template>
-  <div >
-    Home
+  <div>
+    Dashboard
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 
 
 export default {
-  name: 'Home',
+  name: 'dashboard',
   components: {
     
   }
