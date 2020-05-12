@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import SignIn from '../views/SignIn.vue'
+import Prueba from '../views/Prueba.vue'
 import store from '@/store'
 
 
@@ -17,6 +18,11 @@ const routes = [{
         path: '/signin',
         name: 'signin',
         component: SignIn
+    },
+    {
+        path: '/prueba',
+        name: 'prueba',
+        component: Prueba
     },
     {
         path: '/dashboard',

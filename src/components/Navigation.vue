@@ -1,44 +1,66 @@
 <template>
-    <ul>
-        <li>            
-            <router-link 
-                :to="{ name: 'Home'}"
-            >Home</router-link>
-        </li>
+    <v-app id="inspire">
+        <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark >
+            <v-app-bar-nav-icon v-if="authenticated"  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-toolbar-title style="width: 300px"  class="ml-0 pl-4">
+                <span class="hidden-sm-and-down">Surcoestudios</span>
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon @click.prevent="signOut">
+                Salir
+               
+            </v-btn>
+        </v-app-bar>
         
-        <template v-if="authenticated">
-            <li>
-               {{ user.name }}
-            </li>
-            <li>
+        <ul>
+            <li>            
                 <router-link 
-                    :to="{ name: 'dashboard'}"
-                >Dashboard</router-link>
-            </li>        
-            <li>
-                <a href="#" @click.prevent="signOut">Salir</a>
+                    :to="{ name: 'Home'}"
+                >Home</router-link>
             </li>
-        </template>
-        <template v-else>
-            <li>
+            <li>            
                 <router-link 
-                    :to="{ name: 'signin'}"
-                >Ingresar</router-link>
+                    :to="{ name: 'prueba'}"
+                >Prueb</router-link>
             </li>
-        </template>
-    </ul>
+            
+            <template v-if="authenticated">
+                <li>
+                {{ user.name }}
+                </li>
+                <li>
+                    <router-link 
+                        :to="{ name: 'dashboard'}"
+                    >Dashboard</router-link>
+                </li>        
+                <li>
+                    <a href="#" @click.prevent="signOut">Salir</a>
+                </li>
+            </template>
+            <template v-else>
+                <li>
+                    <router-link 
+                        :to="{ name: 'signin'}"
+                    >Ingresar</router-link>
+                </li>
+            </template>
+        </ul>
+    </v-app>
 </template>
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
     export default {    
-       computed: {
+        computed: {
            ...mapGetters({
                authenticated: 'auth/authenticated',
                user: 'auth/user'
            })
-       },
-
+        },
+        data: () => ({
+            dialog: false,
+            drawer: null,
+        }),
        methods: {
            ...mapActions({
                signOutAction: 'auth/signOut'
