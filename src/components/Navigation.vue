@@ -1,14 +1,19 @@
 <template>
     <v-app id="inspire">
-        <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark >
+        <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue-grey darken-3" dark >
             <v-app-bar-nav-icon v-if="authenticated"  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title style="width: 300px"  class="ml-0 pl-4">
                 <span class="hidden-sm-and-down">Surcoestudios</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn icon @click.prevent="signOut">
-                Salir
-               
+            <v-btn text @click.prevent="navegar('Home')">Inicio
+                <!-- <router-link 
+                    :to="{ name: 'Home'}"
+                >Home</router-link>-->
+            </v-btn>
+            <v-btn text @click.prevent="navegar('Home')">Inicio</v-btn>
+            <v-btn v-if="authenticated" icon @click.prevent="signOut">
+                Salir               
             </v-btn>
         </v-app-bar>
         
@@ -73,10 +78,20 @@
                    })
                })
               
+           },
+
+           navegar (rutaNav) {
+                this.$router.replace({
+                    name: rutaNav
+                })
            }
        }
        
     }
 </script>
+
+<style scoped>
+ 
+</style>
 
 
